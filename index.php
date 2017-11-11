@@ -9,12 +9,14 @@ define('APP_DEBUG', true);
 // 加载框架文件
 require(APP_PATH .'fastphp/Fastphp.php');
 
+// 加载配置文件
 $config = require(APP_PATH . 'config/config.php');
 
 // 实例化框架类
+(new Fastphp($config))->run();
+
 //$obj = (new Fastphp($config));//加载配置。 仔细理解__construct($config);
 /*
 $obj = (new Fastphp($config));//->run();
 var_dump($obj);
 */
-(new Fastphp($config))->run();
