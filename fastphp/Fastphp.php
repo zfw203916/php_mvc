@@ -24,6 +24,7 @@ class Fastphp
 	
 	// 路由处理
 	public function route(){
+		
 		$controllerName = $this->_config['defaultController'];
 		$actionName = $this->_config['defaultAction'];
 		//return $actionName;
@@ -39,9 +40,24 @@ class Fastphp
 		if($url){
 			echo 1;
 		}
-		echo 2;
+		//echo 2;
+		
+		// 判断控制器和操作是否存在
+		$controller = $controllerName . 'Controller';
+		//var_dump($controller);die;
+		if(!class_exists($controller)){
+			exit($controller . '控制器不存在');
+		}
+		
+		if(!method_exists($controller, $actionName)){
+			exit($actionName . '方法不存在');
+		}
+		
 		
 	}
+	
+	
+	
 	
 	public function loadClass(){
 		
