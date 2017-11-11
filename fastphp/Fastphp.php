@@ -36,7 +36,10 @@ class Fastphp
 		
 		// 删除前后的“/”
 		$url = trim($url, '/');
-		var_dump($url);die;
+		if($url){
+			echo 1;
+		}
+		echo 2;
 		
 	}
 	
