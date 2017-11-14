@@ -27,6 +27,8 @@ class Fastphp
 		//var_dump (spl_autoload_register(array($this, 'loadClass')));die;
 		//spl_autoload_register("Fastphp::loadClass");
 		spl_autoload_register(array($this, 'loadClass'));//自动加载类文件
+		$this->setReporting();
+		@$this->stripSlashesDeep();
 		$this->route();//处理路由
 	}
 	
@@ -53,7 +55,7 @@ class Fastphp
 		// 删除前后的“/”
 		$url = trim($url, '/');
 		if($url){
-			echo 1;
+			echo 2;
 		}
 		//echo 2;die;
 			
@@ -80,18 +82,49 @@ class Fastphp
 		*/
 		$dispatch = new $controller($controller, $actionName);
 		//$dispatch = new $controller();
-		var_dump($dispatch);die;
+		//var_dump($dispatch);die;
 				
 		/**
 		* $dispatch保存控制器实例化后的对象，我们就可以调用它的方法，
         * 也可以像方法中传入参数，以下等同于：$dispatch->$actionName($param)
 		**/
-		//call_user_func_array(array($dispatch, $actionName), $param);
-		
+		call_user_func_array(array($dispatch, $actionName), $param);	
 		
 	}
 	
+	
+	 /**
+     *检测开发环境
+	 **/
+	 public function setReporting(){
+		 if(APP_DEBUG === true){
+			error_reporting(E_ALL);
+			ini_set('display_errors', 'On');
+		 }else{
+			 error_reporting(E_ALL);
+			 ini_set('display_errors', 'Off');
+			 ini_set('log_errors', 'On');
+		 }
+	 }
+	
+	/**
+     *删除敏感字符
+	 **/
+	public function stripSlashesDeep($value){
 		
+		$value = is_array($value) ? array_map(array($this, 'stripSlashesDeep'), $value) : stripslashes($value);
+		return $value;
+	}
+	
+	/**
+	*检测敏感字符并删除
+	**/
+	public function removeMagicQuotes(){
+		if(get_magic_quotes_gpc()){
+			
+		}
+	}
+	
 	
 	/**
 	*  自动加载控制器和模型类 

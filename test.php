@@ -1,18 +1,26 @@
 <?php
 
-function foobar($arg, $arg2) {
-    echo __FUNCTION__, "  $arg ==== $arg2\n";
-}
-class foo {
-    function bar($arg, $arg2) {
-        echo __METHOD__, "$arg ==== $arg2\n";
-    }
+function playVideo($type, $src)
+{
+    echo 'I will watch '.$src;
 }
 
+function playAudio($type, $src, $artist)
+{
+    echo 'I will listen to '.$artist.'\'s'.$src;
+}
 
-// Call the foobar() function with 2 arguments
-call_user_func_array("foobar", array("one", "two"));
-echo "<br/>";
-// Call the $foo->bar() method with 2 arguments
-$foo = new foo;
-call_user_func_array(array($foo, "bar"), array("three", "four"));
+function play()
+{
+    $args = func_get_args();
+
+     call_user_func_array( 'play'.$args[0], $args  );
+}
+
+play('Video','11.rmvb');
+
+echo " <br/>";
+
+play('Audio','22.mp3', 'Jay');
+
+//https://segmentfault.com/q/1010000000469520
