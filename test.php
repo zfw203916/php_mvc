@@ -43,6 +43,7 @@ function FriendlyErrorType($type)
     return "";
 } 
 
+<<<<<<< HEAD
 die;
 function foobar($arg, $arg2) {
     echo __FUNCTION__, "\n$arg ==== $arg2\n";
@@ -52,12 +53,38 @@ class foo {
     function bar($arg, $arg2) {
         echo __METHOD__;
     }
+=======
+function playVideo($type, $src)
+{
+    echo 'I will watch '.$src;
 }
 
+function playAudio($type, $src, $artist)
+{
+    echo 'I will listen to '.$artist.'\'s'.$src;
+}
 
+function play()
+{
+    $args = func_get_args();
+
+     call_user_func_array( 'play'.$args[0], $args  );
+>>>>>>> 3bde92e2558cb13a9c5010ecd83cba8645b7a237
+}
+
+play('Video','11.rmvb');
+
+echo " <br/>";
+
+play('Audio','22.mp3', 'Jay');
+
+<<<<<<< HEAD
 // Call the foobar() function with 2 arguments
 //call_user_func_array("foobar", array("one", "two"));
 //echo "<br/>";die;
 // Call the $foo->bar() method with 2 arguments
 $foo = new foo;
 call_user_func_array(array($foo, "bar"), array("three", "four"));
+=======
+//https://segmentfault.com/q/1010000000469520
+>>>>>>> 3bde92e2558cb13a9c5010ecd83cba8645b7a237
