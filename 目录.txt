@@ -4,3 +4,6 @@ https://www.cnblogs.com/zzl-21086595/p/4547519.html
 http://www.cnblogs.com/zzl-21086595/p/4517143.html
 http://php.net/manual/zh/function.call-user-func-array.php
 https://zhidao.baidu.com/question/555435059.html
+
+
+https://d.laravel-china.org/docs/5.5/blade   Laravel

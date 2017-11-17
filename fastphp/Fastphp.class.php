@@ -100,7 +100,6 @@ class Fastphp
 		 if(APP_DEBUG === true){
 			error_reporting(E_ALL);
 			ini_set('display_errors', 'On');
-			var_dump(error_reporting(E_ALL));die;
 		 }else{
 			 error_reporting(E_ALL);
 			 ini_set('display_errors', 'Off');
@@ -125,6 +124,8 @@ class Fastphp
 			
 		}
 	}
+	
+	
 	
 	
 	/**
