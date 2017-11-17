@@ -26,16 +26,21 @@ class Fastphp
 		//var_dump(array($this, 'loadClass'));die;
 		//var_dump (spl_autoload_register(array($this, 'loadClass')));die;
 		//spl_autoload_register("Fastphp::loadClass");
+		
 		spl_autoload_register(array($this, 'loadClass'));//自动加载类文件
 		$this->setReporting();//检测开发环境
-		//@$this->stripSlashesDeep();//删除敏感字符
+		$this->removeMagicQuotes(); // 检测敏感字符并删除
+		$this->unregisterGlobals();//移除全局变量的老用法
+        $this->setDbConfig();
 		$this->route();//处理路由
+		
 	}
 	
 	
 	/**
 	 * 路由处理
 	 * 执行这里的路由和程序。
+	 * 路由方法，作用是：截取URL，并解析出控制器名、方法名和URL参数。
 	 **/
 	public function route(){
 		
@@ -71,7 +76,8 @@ class Fastphp
 		if(!method_exists($controller, $actionName)){
 			exit($actionName . '方法不存在');
 		}		
-		
+	
+	
 		/**
 		* 如果控制器和操作名存在，则实例化控制器，因为控制器对象里面
         * 还会用到控制器名和操作名，所以实例化的时候把他们俩的名称也
@@ -80,14 +86,17 @@ class Fastphp
 		* 这个是传入ItemController的实例化，但由于这个是继承Controller，所以
 		* 看Controller构造函数即可。
 		*/
-		$dispatch = new $controller($controller, $actionName);
+		
+		$dispatch = new $controller($controller, $actionName);		
 		//$dispatch = new $controller();
 		//var_dump($dispatch);die;
-				
+
+
+		
 		/**
 		* $dispatch保存控制器实例化后的对象，我们就可以调用它的方法，
         * 也可以像方法中传入参数，以下等同于：$dispatch->$actionName($param)
-		**/
+		**/	
 		call_user_func_array(array($dispatch, $actionName), $param);	
 		
 	}
@@ -98,12 +107,15 @@ class Fastphp
 	 **/
 	 public function setReporting(){
 		 if(APP_DEBUG === true){
+			 
 			error_reporting(E_ALL);
 			ini_set('display_errors', 'On');
 		 }else{
+			 
 			 error_reporting(E_ALL);
 			 ini_set('display_errors', 'Off');
 			 ini_set('log_errors', 'On');
+			 
 		 }
 	 }
 	
@@ -114,19 +126,54 @@ class Fastphp
 		
 		$value = is_array($value) ? array_map(array($this, 'stripSlashesDeep'), $value) : stripslashes($value);
 		return $value;
+		
 	}
 	
 	/**
 	*检测敏感字符并删除
 	**/
 	public function removeMagicQuotes(){
+		
 		if(get_magic_quotes_gpc()){
 			
 		}
 	}
 	
 	
+	 /** 检测自定义全局变量并移除。因为 register_globals 已经弃用，如果
+     * 已经弃用的 register_globals 指令被设置为 on，那么局部变量也将
+     * 在脚本的全局作用域中可用。 例如， $_POST['foo'] 也将以 $foo 的
+     * 形式存在，这样写是不好的实现，会影响代码中的其他变量。 相关信息，
+     * 参考: http://php.net/manual/zh/faq.using.php#faq.register-globals
+	 **/
+	public function unregisterGlobals(){
+							
+		if(ini_get('register_globals')){
+		
+			$array = ['_SESSION','_POST','_COOKIE','_REQUEST','_SERVER','_ENV','_ENV','_FILES'];					
+			foreach($arrayStr as $value){
+				//var_dump($arrayStr);
+			}
+			
+		}
+	}
 	
+	
+	
+	/**
+	*	配置数据库信息,重新配置定义
+	**/
+	public function setDbConfig(){
+		
+		//var_dump($this->_config['db']);die;
+		if($this->_config['db']){
+			define("DB_HOST", $this->_config['db']['host']);
+			define("DB_NAME", $this->_config['db']['dbname']);
+			define("DB_USER", $this->_config['db']['username']);
+			define("DB_PASS", $this->_config['db']['password']);
+			
+		}
+	}
 	
 	/**
 	*  自动加载控制器和模型类 

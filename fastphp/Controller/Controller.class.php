@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 控制器基类
+ * 控制器基类(Controller基类)
  */
 include_once("fastphp/View/View.class.php");
 class Controller
