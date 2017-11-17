@@ -31,7 +31,7 @@ class Fastphp
 		$this->setReporting();//检测开发环境
 		$this->removeMagicQuotes(); // 检测敏感字符并删除
 		$this->unregisterGlobals();//移除全局变量的老用法
-        $this->setDbConfig();
+        $this->setDbConfig();//配置数据库信息
 		$this->route();//处理路由
 		
 	}
@@ -60,7 +60,7 @@ class Fastphp
 		// 删除前后的“/”
 		$url = trim($url, '/');
 		if($url){
-			echo 2;
+			echo 2;die;
 		}
 		//echo 2;die;
 			
@@ -157,8 +157,7 @@ class Fastphp
 			
 		}
 	}
-	
-	
+		
 	
 	/**
 	*	配置数据库信息,重新配置定义
@@ -175,6 +174,14 @@ class Fastphp
 		}
 	}
 	
+	/*
+	public function setDbConfig(){
+		if($this->_config['db']{
+			Model::$dbconfig = $this->_config['db'];
+		}
+	}
+	*/
+	
 	/**
 	*  自动加载控制器和模型类 
 	**/
@@ -189,6 +196,7 @@ class Fastphp
 		
 		$models = APP_PATH . 'application/models/' . $class . '.class.php';
 		
+		//也就是下面如果文件都存在的话，是都加载进来的。
 		if(file_exists($frameworks)){
 			
 			// 加载框架核心类
