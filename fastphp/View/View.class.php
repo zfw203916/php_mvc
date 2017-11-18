@@ -32,10 +32,15 @@
 	 *  渲染显示
 	 **/
 	 public function render(){
-		 
+		  $keyword = $this->test01($keyword);
 		 //echo 'father';
 		 		 		 
 	 }
+	 
+	 public static function test01($str, $strlist =  " \t\n\r\0\x0B"){
+       var_dump(self::test01($str));die;
+       return self::test01($str);
+    }
 	 
 	 
  }

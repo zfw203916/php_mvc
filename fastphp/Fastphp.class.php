@@ -209,7 +209,7 @@ class Fastphp
 			
 		}elseif(file_exists($models)){
 			
-			 //加载应用模型类
+			//加载应用模型类
 			include $models;
 			
 		}else{
