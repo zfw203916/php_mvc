@@ -6,7 +6,7 @@
 *而不需要再引入。
 *
 **/
-include_once("fastphp/Controller/Controller.class.php");
+//include_once("fastphp/Controller.php");
 
 /**
 也可以这么写，但写入父类更好

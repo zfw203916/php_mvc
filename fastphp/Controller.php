@@ -7,7 +7,7 @@
 	 exit("Access Denied!");
  }
  
-include_once("fastphp/View/View.class.php");
+//sinclude_once("fastphp/View/View.class.php");
 class Controller
 {
 	protected $_controller;
@@ -26,7 +26,7 @@ class Controller
 		*测试的类。也测试如何加载进来的类。
 		*没必要这样加载include_once("fastphp/View/View.class.php");
 		**/	
-		$this->_test = new Test($action);
+		//$this->_test = new Test($action);
 		
 		/*
 		$this->_controller = 'a';

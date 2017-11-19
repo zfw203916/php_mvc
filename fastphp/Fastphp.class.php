@@ -222,32 +222,40 @@ class Fastphp
 	**/
 	public static function loadClass($class){
 		
-		//var_dump($class);die;
-		$frameworks = __DIR__ . '/' . $class . '.class.php';
-		//var_dump($class, '----',$frameworks);die;
+		//var_dump($class);die; //ItemController
+		//应该是controller
+		
+		 $frameworks = __DIR__ . '/' . $class . '.php';
+		//var_dump($frameworks);die;
 		//var_dump(__DIR__);die;
 		
-		$controllers = APP_PATH . 'application/controllers/' . $class . '.class.php';
+		$controllers = APP_PATH . 'application/controllers/' . $class . '.php';
 		//var_dump($controllers);die;
 		
-		$models = APP_PATH . 'application/models/' . $class . '.class.php';
-		//var_dump($models);die;
+		 $models = APP_PATH . 'application/models/' . $class . '.php';
+		var_dump($models);die;
 		
 		//也就是下面如果文件都存在的话，是都加载进来的。
 		if(file_exists($frameworks)){
 			
 			// 加载框架核心类
+			//string(46) "D:\phpStudy\WWW\php_mvc\fastphp/Controller.php" 加载Controller.php是正确的
 			include $frameworks;
+			//var_dump($frameworks);die;
 			
 		}elseif(file_exists($controllers)){
 			
 			// 加载应用控制器类
 			include $controllers;
+			//var_dump($controllers);die;
 			
 		}elseif(file_exists($models)){
 			
 			//加载应用模型类
 			include $models;
+			var_dump($models);die;  
+		    //string(61) "D:\phpStudy\WWW\php_mvc/application/models/ItemController.php" 是有问题的，
+			//应该是 string(56) "D:\phpStudy\WWW\fastphp/application/models/ItemModel.php" 
 			
 		}else{
 			
