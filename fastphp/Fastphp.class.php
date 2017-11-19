@@ -2,6 +2,14 @@
 /**
  * fastphp框架核心
  */
+
+ 
+//没有从index.php走的访问一律提示无权限。
+ if(!defined('APP_PATH')){
+	 exit("Access Denied!");
+ }
+ 
+ 
 class Fastphp
 {
 	protected $_config = [];
@@ -41,6 +49,8 @@ class Fastphp
 	 * 路由处理
 	 * 执行这里的路由和程序。
 	 * 路由方法，作用是：截取URL，并解析出控制器名、方法名和URL参数。
+	 * 当浏览器访问上面的URL，route()从全局变量 $_SERVER['REQUEST_URI']中获取到字符串/controllerName/actionName/queryString。
+	 * 然后，会将这个字符串分割成三部分：controller、action 和 queryString。
 	 **/
 	public function route(){
 		
@@ -54,13 +64,39 @@ class Fastphp
 		
 		// 清除?之后的内容
 		$position = strpos($url, '?');//查找?第一次出现的位置
-		$url = $position === false ? $url : substr($url, 0 , $position);		
+		//var_dump($url);die;
+		
+		//就是截取后面的http://www.163.com/c/a/v 的/c/a/v 并方便它分解出来。		
+		$url = $position === false ? $url : substr($url, 0 , $position);
 		//var_dump($url);die;
 			
 		// 删除前后的“/”
 		$url = trim($url, '/');
+		//var_dump($url);die;
+		
 		if($url){
-			echo 2;die;
+			
+			//echo 2;die;
+			// 使用“/”分割字符串，并保存在数组中
+			$urlArray = explode('/', $url);
+			//var_dump($urlArray);die;
+			
+			// 删除空的数组元素
+			$urlArray = array_filter($urlArray);
+			//var_dump($urlArray);die;
+			
+			// 获取控制器名
+			$controllerName = ucfirst($urlArray[0]);
+			
+			// 获取动作名, 删除第一个数组。
+			//也就是剩下第二个和参数了,取第一个也就是方法名了，
+			array_shift($urlArray);
+			$actionName = $urlArray ? $urlArray[0] : $actionName;
+			
+			// 获取URL参数
+			array_shift($urlArray);
+			$param = $urlArray ? $urlArray : array();
+			
 		}
 		//echo 2;die;
 			
@@ -97,8 +133,7 @@ class Fastphp
 		* $dispatch保存控制器实例化后的对象，我们就可以调用它的方法，
         * 也可以像方法中传入参数，以下等同于：$dispatch->$actionName($param)
 		**/	
-		call_user_func_array(array($dispatch, $actionName), $param);	
-		
+		call_user_func_array(array($dispatch, $actionName), $param);			
 	}
 	
 	
@@ -190,11 +225,13 @@ class Fastphp
 		//var_dump($class);die;
 		$frameworks = __DIR__ . '/' . $class . '.class.php';
 		//var_dump($class, '----',$frameworks);die;
+		//var_dump(__DIR__);die;
 		
 		$controllers = APP_PATH . 'application/controllers/' . $class . '.class.php';
-		//var_dump($controller);die;
+		//var_dump($controllers);die;
 		
 		$models = APP_PATH . 'application/models/' . $class . '.class.php';
+		//var_dump($models);die;
 		
 		//也就是下面如果文件都存在的话，是都加载进来的。
 		if(file_exists($frameworks)){
@@ -218,12 +255,9 @@ class Fastphp
 			
 		}
 
-
 		
 }
-	
-	
-	
+		
 	
 	
 }

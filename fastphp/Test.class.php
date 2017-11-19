@@ -1,5 +1,9 @@
 <?php 
 
+ if(!defined('APP_PATH')){
+	 exit("Access Denied!");
+ }
+ 
 class Test
 {
 	protected $_controller;
@@ -10,4 +14,8 @@ class Test
 		 $this->_action = $action;
 	 }
 	
+	public function index($str){
+		echo  $str;
+		return $str;
+	}
 }

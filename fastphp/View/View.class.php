@@ -3,6 +3,9 @@
 /**
  * 视图基类
  */
+  if(!defined('APP_PATH')){
+	 exit("Access Denied!");
+ }
  
  class View 
  {
@@ -36,7 +39,7 @@
 		 //echo 'father';
 		 		 		 
 	 }
-	 
+	 //just test
 	 public static function test01($str, $strlist =  " \t\n\r\0\x0B"){
        var_dump(self::test01($str));die;
        return self::test01($str);

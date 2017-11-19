@@ -1,10 +1,12 @@
 <?php
-
-/**
+if(!defined('APP_PATH')){
+	exit('Access Denied!');
+}
+/**d
  * 用户Model
  */
  //include("../../fastphp/Model.php");
-class ItemModel //extends Model
+class ItemModel extends Model
 {
 	
 	/**

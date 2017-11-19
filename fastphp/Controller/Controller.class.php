@@ -3,6 +3,10 @@
 /**
  * 控制器基类(Controller基类)
  */
+  if(!defined('APP_PATH')){
+	 exit("Access Denied!");
+ }
+ 
 include_once("fastphp/View/View.class.php");
 class Controller
 {
