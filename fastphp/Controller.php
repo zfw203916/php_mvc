@@ -3,9 +3,9 @@
 /**
  * 控制器基类(Controller基类)
  */
-  if(!defined('APP_PATH')){
-	 exit("Access Denied!");
- }
+if(!defined('APP_PATH')){
+	exit("Access Denied!");
+}
  
 //sinclude_once("fastphp/View/View.class.php");
 class Controller

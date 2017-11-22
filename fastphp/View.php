@@ -56,33 +56,26 @@
 		 
 		 //页头文件
 		if(file_exists){
-			@include ($controllerHeader);
+			include ($controllerHeader);
 		}else{
-			@include($defaultHeader);
+			include($defaultHeader);
 		}
 		
 		//判断视图文件是否存在
 		if(file_exists($controllerLayout)){
-			@include ($controllerLayout);
+			include ($controllerLayout);
 		}else{
 			echo "<h1>无法找到试图文件</h1>";
 		}
 		
 		 // 页脚文件
 		 if(file_exists($connectionFooter)){
-			 @include($connectionFooter);
+			 include($connectionFooter);
 		 }else{
-			 @include($defaultFooter);
+			 include($defaultFooter);
 		 }
 		 		 		 
 	 }
-	 
-	 
-	 //just test
-	 public static function test01($str, $strlist =  " \t\n\r\0\x0B"){
-       var_dump(self::test01($str));die;
-       return self::test01($str);
-    }
 	 
 	 
  }
