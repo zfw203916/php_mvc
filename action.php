@@ -1,0 +1,6 @@
+<?php
+
+$array = extract($_POST);
+echo($array);
+//Ïàµ±ÓÚ$username = $_POST['username'];
+//$password = $_POST['password']; 

@@ -15,18 +15,7 @@ class ItemModel extends Model
      * 这里就是 item 表
      * @var string
      */
-	
-	protected $model;
-	
-	public function __construct(){
-		
-		// 获取数据库表名
-		if(!$this->table){
-			
-			//
-		}
-		
-	}
+	 
 	 
 	 
 	 

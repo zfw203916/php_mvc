@@ -7,7 +7,7 @@ define('APP_PATH',__DIR__ . '/');
 define('APP_DEBUG', true);
 
 // 加载框架文件
-require(APP_PATH .'fastphp/Fastphp.class.php');
+require(APP_PATH .'fastphp/Fastphp.php');
 
 // 加载配置文件
 $config = require(APP_PATH . 'config/config.php');

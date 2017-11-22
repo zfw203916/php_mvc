@@ -30,9 +30,20 @@ class ItemController
 
 class ItemController extends Controller
 {
-	
+
+	// 首页方法，测试框架自定义DB查询
 	public function index(){
+		//echo new ItemModel();die;
 		//echo 'ItemController 的 index方法';
+		/*
+		$keyword = isset($_GET['keyword'] ? $_GET['keyword'] : '');
+		if($keyword){
+			$items = (new ItemModel())->search($keyword);
+		}else{
+			
+		}
+		*/
+		
 	}
 
 }

@@ -57,11 +57,11 @@ class Fastphp
 		$controllerName = $this->_config['defaultController'];//拿到这个配置的数值
 		$actionName = $this->_config['defaultAction'];//拿到这个配置的数值
 		//echo  $actionName;die;
-		
+		//var_dump($controllerName);die;
 		$param = array();
 		$url = $_SERVER['REQUEST_URI'];
 		
-		
+		//var_dump($url);die;
 		// 清除?之后的内容
 		$position = strpos($url, '?');//查找?第一次出现的位置
 		//var_dump($url);die;
@@ -69,10 +69,10 @@ class Fastphp
 		//就是截取后面的http://www.163.com/c/a/v 的/c/a/v 并方便它分解出来。		
 		$url = $position === false ? $url : substr($url, 0 , $position);
 		//var_dump($url);die;
-			
+		
 		// 删除前后的“/”
-		$url = trim($url, '/');
-		//var_dump($url);die;
+		$url = trim($url, '/'); //找到问题，出现在这里。
+		//var_dump($url);die;  
 		
 		if($url){
 			
@@ -231,9 +231,9 @@ class Fastphp
 		
 		$controllers = APP_PATH . 'application/controllers/' . $class . '.php';
 		//var_dump($controllers);die;
-		
+		//$models = APP_PATH . 'application/controllers/' . $class . '.php';
 		 $models = APP_PATH . 'application/models/' . $class . '.php';
-		var_dump($models);die;
+		//var_dump($models);die;
 		
 		//也就是下面如果文件都存在的话，是都加载进来的。
 		if(file_exists($frameworks)){
@@ -248,12 +248,13 @@ class Fastphp
 			// 加载应用控制器类
 			include $controllers;
 			//var_dump($controllers);die;
+			//string(66) "D:\phpStudy\WWW\php_mvc/application/controllers/ItemController.php" 
 			
 		}elseif(file_exists($models)){
-			
+			echo 1;die;//不包含model文件，问题出在哪里呢
 			//加载应用模型类
 			include $models;
-			var_dump($models);die;  
+			//var_dump($models);die;  
 		    //string(61) "D:\phpStudy\WWW\php_mvc/application/models/ItemController.php" 是有问题的，
 			//应该是 string(56) "D:\phpStudy\WWW\fastphp/application/models/ItemModel.php" 
 			

@@ -37,6 +37,11 @@ class Controller
 		
 		//var_dump($this->_view->render());//父类的render的方法。
 		//$this->render();//当前类的render方法.
+		
+		//var_dump($this->_view);die;
+		
+		//$this->_view->render();
+		//echo $this->_controller;
 	}
 	
 	
