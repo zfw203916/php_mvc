@@ -44,6 +44,7 @@ class ItemController extends Controller
 			$items = (new ItemModel())->search($str);
 			//var_dump($items);die;
 			
+			
 		}else{
 			// 查询所有内容，并按倒序排列输出
             // where()方法可不传入参数，或者省略
@@ -51,7 +52,8 @@ class ItemController extends Controller
 			
 		}
 		
-		$this->assing("item",$item);		
+		//$this->assing('keyword', $keyword);
+		//$this->assing("items", $items);		
 		$this->render();
 		
 	}

@@ -9,7 +9,7 @@
  
  class View 
  {
-	 protected $vaiables = [];
+	 protected $variables = array();
 	 protected $_controller;
 	 protected $_action;
 	 
@@ -27,7 +27,7 @@
 		 
 		//echo 'this is assgin';
 		//var_dump($this->vaiables);
-		//$this->vaiables[$name] = $value;//
+		$this->variables[$name] = $value;
 	
 		 
 	 }
