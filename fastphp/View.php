@@ -52,18 +52,18 @@
 		 $controllerHeader = APP_PATH . 'application/views/common/header.php';
 		 $connectionFooter = APP_PATH . 'application/views/common/footer.php';
 		 $connectionLayout = APP_PATH . 'application/views/item/' . $this->_action . '.php';
-		 //var_dump($connectionLayout);
+		 //var_dump($connectionLayout);die;
 		 
 		 //页头文件
-		if(file_exists){
+		if(file_exists($controllerHeader)){
 			include ($controllerHeader);
 		}else{
 			include($defaultHeader);
 		}
 		
 		//判断视图文件是否存在
-		if(file_exists($controllerLayout)){
-			include ($controllerLayout);
+		if(file_exists($connectionLayout)){
+			include ($connectionLayout);
 		}else{
 			echo "<h1>无法找到试图文件</h1>";
 		}

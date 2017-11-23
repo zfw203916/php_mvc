@@ -18,9 +18,9 @@ class Controller
 	// 构造函数，初始化属性，并实例化对应模型
 	public function __construct($controller, $action){
 		
-		$this->_controller = $controller;
-		$this->_action = $action;
-		$this->_view = new View($controller, $action);
+		$this->_controller = $controller;//控制器
+		$this->_action = $action;//方法
+		$this->_view = new View($controller, $action);//视图
 		
 		/**
 		*测试的类。也测试如何加载进来的类。
