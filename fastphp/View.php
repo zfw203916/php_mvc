@@ -26,7 +26,7 @@
 	 public function assign($name, $value){
 		 
 		//echo 'this is assgin';
-		//var_dump($this->vaiables);
+		//var_dump($this->variables);die;
 		$this->variables[$name] = $value;
 	
 		 
@@ -40,7 +40,7 @@
 		  //$keyword = $this->test01($keyword);
 		 //echo 'father';
 		 
-		 extract($this->vaiables);
+		 extract($this->variables);
 		 $defaultHeader = APP_PATH . 'application/views/common/header.php';
 		 $defaultFooter = APP_PATH . 'application/views/common/footer.php';
 		
