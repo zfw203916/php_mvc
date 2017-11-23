@@ -29,7 +29,7 @@ class ItemModel extends Model
 	public function search($keyword){
 		
 		$sql = "select * from `$this->table` where `item_name` like : keyword";
-		$sth = Db::pdo()->prepare($sql);
+		//$sth = Db::pdo()->prepare($sql);
 		//var_dump($sql);die;
 	}
 	 

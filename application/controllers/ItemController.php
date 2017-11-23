@@ -40,15 +40,18 @@ class ItemController extends Controller
 		$keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
 		
 		if($keyword){
+			
 			$items = (new ItemModel())->search($str);
-			var_dump($items);die;
+			//var_dump($items);die;
+			
 		}else{
 			// 查询所有内容，并按倒序排列输出
             // where()方法可不传入参数，或者省略
 			//$items = (new ItemModel)->where()->order();
 			
 		}
-				
+		
+		$this->assing("item",$item);		
 		$this->render();
 		
 	}
