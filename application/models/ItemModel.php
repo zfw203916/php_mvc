@@ -27,8 +27,8 @@ class ItemModel extends Model
      * @return array 返回的数据
      */
 	public function search($keyword){
-		
-		$sql = "select * from `$this->table` where `item_name` like : keyword";
+		//echo $keyword;die;
+		//$sql = "select * from `$this->table` where `item_name` like : keyword";
 		//$sth = Db::pdo()->prepare($sql);
 		//var_dump($sql);die;
 	}

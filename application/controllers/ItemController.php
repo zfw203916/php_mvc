@@ -36,27 +36,26 @@ class ItemController extends Controller
 		
 		//echo new ItemModel();die;
 		//echo 'ItemController 的 index方法';		
-		
+					
 		$keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
-		
 		if($keyword){
 			
-			$items = (new ItemModel())->search($str);
-			//var_dump($items);die;
-			
+			$items = (new ItemModel())->where()->order-(['ide DESC'])		
 			
 		}else{
 			// 查询所有内容，并按倒序排列输出
             // where()方法可不传入参数，或者省略
-			//$items = (new ItemModel)->where()->order();
+			$item = 
 			
 		}
-		
-		//$this->assing('keyword', $keyword);
-		//$this->assing("items", $items);		
+		$this->assing('title','全部条目' );
+		$this->assing('keyword', $keyword);
+		$this->assing("items", $items);		
 		$this->render();
 		
 	}
+	
+	
 	
 	
 	

@@ -1,9 +1,9 @@
 <?php
-/*
+
  if(!defined('APP_PATH')){
 	 exit("Access Denied!");
  }
- */
+
 /**
 * 数据库基类
 *
@@ -39,8 +39,9 @@ class Sql
      * @return $this 当前对象
      */
 	public function where($where = array(), $param = array()){
+		
 		if($where){
-			$this->filter .= ' WHERE';
+			$this->filter .= ' WHERE ';
 			$this->filter .= implode(' ', $where);
 			
 			$this->param = $param;
@@ -50,7 +51,7 @@ class Sql
 	}
 	
 	
-	 /**
+	  /**
      * 拼装排序条件，使用方式：
      *
      * $this->order(['id DESC', 'title ASC', ...])->fetch();
@@ -61,12 +62,12 @@ class Sql
 	 public function order($order = array()){
 		 
 		 if($order){
+			 
 			 $this->filter .= ' ORDER BY ';
-			 $this->filter .= implode(',', $order);
+			 $this->flter  .= imploe(',', $order);
 		 }
 		 
 		 return $this;
-		 
 		 
 	 }
 	
