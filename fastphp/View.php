@@ -28,6 +28,7 @@
 		//echo 'this is assgin';
 		//var_dump($this->variables);die;
 		$this->variables[$name] = $value;
+		//var_dump($this->variables[$name],'====',$value);die;
 	
 		 
 	 }

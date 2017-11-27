@@ -36,21 +36,31 @@ class ItemController extends Controller
 		
 		//echo new ItemModel();die;
 		//echo 'ItemController 的 index方法';		
-					
 		$keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
 		if($keyword){
+			//var_dump($this);die;
 			
-			$items = (new ItemModel())->where()->order-(['ide DESC'])		
+			//$sql = sprintf("select * from `%s` %s", $this->table, $this->filter);
+			//$sql = sprintf("select * from item");
+			echo 'aaa';die;
+			$sth = Db::pdo()->prepare($sql);
+			$sth = $this->formatParam($sth, $this->param);
+			$sth->execute();
 			
+			$items = (new ItemModel())->search($keyword);
+			//var_dump(new ItemModel());die;
+			  			
 		}else{
+			
 			// 查询所有内容，并按倒序排列输出
             // where()方法可不传入参数，或者省略
-			$item = 
+			//$items = (new ItemModel())->where()->order->(['ide DESC'])->fetchAll();
+			$items = (new ItemModel)->where()->order(['id DESC'])->fetchAll();
 			
 		}
-		$this->assing('title','全部条目' );
-		$this->assing('keyword', $keyword);
-		$this->assing("items", $items);		
+		$this->assign('title','全部条目' );
+		$this->assign('keyword', $keyword);
+		//$this->assign("items", $items);		
 		$this->render();
 		
 	}

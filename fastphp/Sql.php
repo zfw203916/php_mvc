@@ -46,7 +46,7 @@ class Sql
 			
 			$this->param = $param;
 		}
-		
+
 		return $this;
 	}
 	
@@ -65,15 +65,30 @@ class Sql
 			 
 			 $this->filter .= ' ORDER BY ';
 			 $this->flter  .= imploe(',', $order);
+			 
 		 }
 		 
 		 return $this;
 		 
 	 }
 	
-	
+	// 查询所有
 	public function fetchAll(){
 		
+		/*
+		echo 2;die;
+		$number = 2;
+		$str = "shanghai";
+		$txt = sprintf("There are %u , %s", $number, $str);
+		echo $txt;
+		*/
+		//$sql = sprintf("select * from `%s` %s", $this->table, $this->filter);
+		$sql = sprintf("select * from `%s` %s", $this->table, $this->filter);
+		$sth = Db::pdo()->prepare($sql);
+		$sth = $this->formatParam($sth, $this->param);
+		$sth->execute();
+		
+		return $sth->fetchAll();
 		
 	}
 	

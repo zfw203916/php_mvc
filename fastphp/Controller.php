@@ -51,7 +51,7 @@ class Controller
 	**/ 
 	public function assign($name, $value){
 		
-		//var_dump($name);die;
+		//var_dump($value);die;
 		$this->_view->assign($name, $value);
 		
 	}
