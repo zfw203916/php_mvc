@@ -30,7 +30,7 @@ class ItemModel extends Model
 		//echo $keyword;die;
 		 //$sql = "select * from `$this->table` where `item_name` like : keyword";
 		$sql = "select * from `$this->table` where `item_name` like :keyword";
-        $sth = Db::pdo()->prepare($sql);
+        $sth = Db::pdo()->prepare($sql); //Db是怎么过来的。没继承。
         $sth = $this->formatParam($sth, [':keyword' => "%$keyword%"]);
         $sth->execute();
 

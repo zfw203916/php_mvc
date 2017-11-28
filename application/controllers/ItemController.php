@@ -39,15 +39,15 @@ class ItemController extends Controller
 		$keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
 		if($keyword){
 			//var_dump($this);die;
-			
+			//var_dump(self::$pdo);die;
 			//$sql = sprintf("select * from `%s` %s", $this->table, $this->filter);
 			//$sql = sprintf("select * from item");
-			echo 'aaa';die;
-			$sth = Db::pdo()->prepare($sql);
+			/*
+			$sth = Db::pdo()->prepare("select * from item");
 			$sth = $this->formatParam($sth, $this->param);
-			$sth->execute();
-			
-			$items = (new ItemModel())->search($keyword);
+			$sth->execute();	
+			*/			
+			//$items = (new ItemModel())->search($keyword);
 			//var_dump(new ItemModel());die;
 			  			
 		}else{
@@ -55,7 +55,7 @@ class ItemController extends Controller
 			// 查询所有内容，并按倒序排列输出
             // where()方法可不传入参数，或者省略
 			//$items = (new ItemModel())->where()->order->(['ide DESC'])->fetchAll();
-			$items = (new ItemModel)->where()->order(['id DESC'])->fetchAll();
+			//$items = (new ItemModel)->where()->order(['id DESC'])->fetchAll();
 			
 		}
 		$this->assign('title','全部条目' );
